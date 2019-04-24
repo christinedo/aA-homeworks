@@ -79,22 +79,3 @@ class Map
   end
 end
 
-m = Map.new
-p m.show
-m.set(1, "one")
-m.set(2, "two")
-m.set(3, "three")
-m.set(4, "four")
-p m.set(5, "five")
-# p m.show
-puts
-p m.get(3)
-p m.delete(4)
-p m.show
-p m.get(4)
-puts
-p m.has("6")
-p m.has(2)
-puts
-p m.set(2, "TWOOOOO")
-
