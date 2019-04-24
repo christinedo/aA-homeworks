@@ -1,81 +1,80 @@
 # Exercise 1 - Stack (LIFO)
  class Stack
   def initialize
-    @stack = []
+    @structure = []
   end
 
   def push(el)
-    @stack << el
+    @structure << el
+    el
   end
 
   def pop
-    @stack.pop
+    @structure.pop
   end
 
   def peek
-    @stack[-1]
+    @structure.last
   end
 end
 
 # Exercise 2 - Queue (FIFO)
 class Queue
   def initialize
-    @queue = []
+    @structure = []
   end
   
   def enqueue(el)
-    @queue << el
+    @structure << el
+    el
   end
 
   def dequeue
-    @queue.shift
+    @structure.shift
   end
 
   def peek
-    @queue[0]
+    @structure.first
   end
 end
 
 # Exercise 3 - Map (2D Array)
 class Map
   def initialize
-    @map = []
+    @structure = []
   end
 
   def set(key, value)
     if !self.has(key)
-      @map << [key, value]
+      @structure << [key, value]
     else
-      @map.each_with_index do |(k, v), i|
-        if k == key
-          @map[i] = [key, value]
-        end
-      end
+      existing_idx = @structure.index { |(k, v), i| k == key }
+      @structure[existing_idx] = [key, value]
     end
     self
   end
 
   def has(key)
-    @map.any? { |k, v| k == key }
+    @structure.any? { |k, v| k == key }
   end
 
   def get(key)
-    @map.each { |k, v| return v if k == key }
+    @structure.each { |k, v| return v if k == key }
     nil
   end
 
   def delete(key)
-    @map.each_with_index do |(k, v), i|
+    @structure.each_with_index do |(k, v), i|
       if k == key
-        @map.slice!(i)
+        @structure.slice!(i)
         return true
       end
     end
     false
   end
 
+  # Should be deep-copy of underlying structure
   def show
-    @map
+    @structure
   end
 end
-
